@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_note_stage_odoo_admin,access.custom.note.stage.admin,notes_odoo.model_custom_note_stage,base.group_system,1,1,1,1
+access_note_stage_odoo_user,access.custom.note.stage.user,notes_odoo.model_custom_note_stage,base.group_user,1,0,0,0
+access_note_tag_odoo_admin,access.custom.note.tag.admin,notes_odoo.model_custom_note_tag,base.group_system,1,1,1,1
+access_note_tag_odoo_user,access.custom.note.tag.user,notes_odoo.model_custom_note_tag,base.group_user,1,0,0,0
+access_note_odoo,access.custom.note,notes_odoo.model_custom_note,base.group_user,1,1,1,1
+

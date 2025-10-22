@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_note_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                   <div class="page">
+                        <div class="text-center">
+                            <h1>
+                                <strong><span style="font-size:40px;" t-field="doc.name"/> </strong>[<span class="text-end" t-field="doc.custom_stage_id.name"/>]
+                            </h1>                          
+                        </div>
+                        <br/><br/>
+                        <div t-if="doc.custom_tag_ids">
+                            Tags:-<span t-field="doc.custom_tag_ids"/>
+                        </div>
+                        <div>
+                            User:-<span t-field="doc.custom_user_id"/>
+                        </div>
+                        <br/><br/>
+                        <div>
+                            <span t-field="doc.description"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

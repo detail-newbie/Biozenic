@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Note Categories Form View -->
+    <record id="custom_note_stage_form_view" model="ir.ui.view">
+      <field name="name">custom.note.stage.form</field>
+      <field name="model">custom.note.stage</field>
+      <field name="arch" type="xml">
+        <form string="Notes Categories">
+          <group>
+            <field name="active" invisible="1"/>
+            <field name="name"/>
+            <field name="fold"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <!-- Note Categories List View -->
+    <record id="custom_note_stage_tree_view" model="ir.ui.view">
+      <field name="name">custom.note.stage.list</field>
+      <field name="model">custom.note.stage</field>
+      <field name="arch" type="xml">
+        <list string="Notes Categories" editable="bottom">
+            <field name="name"/>
+            <field name="fold"/>
+        </list>
+      </field>
+    </record>
+
+    <!-- Note Categories Action -->
+    <record id="custom_action_note_stage" model="ir.actions.act_window">
+      <field name="name">Notes Categories</field>
+      <field name="res_model">custom.note.stage</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+      <menuitem id="custom_menu_note_configuration" parent="menu_custom_note_notes" name="Configuration" sequence="15" groups="base.group_system"/>
+
+      <menuitem id="custom_menu_notes_stage" parent="custom_menu_note_configuration" name="Notes Categories" sequence="16" action="custom_action_note_stage" groups="base.group_system"/>
+</odoo>

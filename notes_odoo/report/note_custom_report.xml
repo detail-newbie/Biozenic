@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="custom_notes_report" model="ir.actions.report">
+            <field name="name">Service Checklist Report</field>
+            <field name="model">custom.note</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">notes_odoo.custom_note_report_template</field>
+            <field name="report_file">notes_odoo.custom_note_report_template</field>
+            <field name="binding_model_id" ref="notes_odoo.model_custom_note"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
