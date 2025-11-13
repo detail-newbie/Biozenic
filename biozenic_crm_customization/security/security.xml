@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- CRM Extra Group -->
+    <record id="crm_extra_rights" model="res.groups.privilege">
+        <field name="description">CRM Extra Rights</field>
+        <field name="name">CRM Extra Rights</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="group_create_proposal" model="res.groups">
+        <field name="name">Create Proposal</field>
+        <field name="privilege_id" ref="crm_extra_rights"/>
+    </record>
+    <record id="group_secure_inventory" model="res.groups">
+        <field name="name">Secure Inventory</field>
+        <field name="privilege_id" ref="crm_extra_rights"/>
+    </record>
+    <record id="group_invoice_customer" model="res.groups">
+        <field name="name">Invoice Customer</field>
+        <field name="privilege_id" ref="crm_extra_rights"/>
+    </record>
+    <record id="group_customer_full_paid" model="res.groups">
+        <field name="name">Customer Full Paid</field>
+        <field name="privilege_id" ref="crm_extra_rights"/>
+    </record>
+
+
+    <!-- Project Extra Group -->
+    <record id="project_extra_rights" model="res.groups.privilege">
+        <field name="description">Project Extra Rights</field>
+        <field name="name">Project Extra Rights</field>
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="group_double_check_inventory" model="res.groups">
+        <field name="name">Double Check Inventory</field>
+        <field name="privilege_id" ref="project_extra_rights"/>
+    </record>
+    <record id="group_customer_full_paid_project" model="res.groups">
+        <field name="name">Customer Full Paid</field>
+        <field name="privilege_id" ref="project_extra_rights"/>
+    </record>
+    <record id="group_customer_not_full_paid_project" model="res.groups">
+        <field name="name">Customer Not Full Paid</field>
+        <field name="privilege_id" ref="project_extra_rights"/>
+    </record>
+
+
+    <!-- Event Extra Group -->
+    <record id="event_extra_rights" model="res.groups.privilege">
+        <field name="description">Event Extra Rights</field>
+        <field name="name">Event Extra Rights</field>
+        <field name="sequence">3</field>
+    </record>
+
+    <record id="group_notify_service_team" model="res.groups">
+        <field name="name">Notify Service Team</field>
+        <field name="privilege_id" ref="event_extra_rights"/>
+    </record>
+    <record id="group_customer_invoice_event" model="res.groups">
+        <field name="name">Customer Invoice Event</field>
+        <field name="privilege_id" ref="event_extra_rights"/>
+    </record>
+    <record id="group_48_hours_check" model="res.groups">
+        <field name="name">48 Hours Check</field>
+        <field name="privilege_id" ref="event_extra_rights"/>
+    </record>
+    <record id="group_administrative_checklist" model="res.groups">
+        <field name="name">Administrative Checklist</field>
+        <field name="privilege_id" ref="event_extra_rights"/>
+    </record>
+
+
+    <!-- Activity On Every 20th Of Month -->
+    <record id="group_activity_on_20th_month" model="res.groups.privilege">
+        <field name="name">Activity On Every 20th Of Month</field>
+        <field name="sequence">4</field>
+    </record>
+
+</odoo>

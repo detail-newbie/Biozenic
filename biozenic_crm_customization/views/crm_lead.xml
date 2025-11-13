@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="crm_lead_view_form_inherit" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//label[@for='email_from']" position="before">
+                <field name="secondary_contact"/>
+            </xpath>
+            <xpath expr="//field[@name='lost_reason_id']" position="before">
+                <field name="job_site"/>
+            </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="add_on_notes" placeholder="Add-on notes..."/>
+            </xpath>
+
+            <xpath expr="//form/sheet/notebook/page[@name='internal_notes']" position="after">
+
+                <page string="Plant Count Details" name="plant_count_details">
+                    <group>
+                        <group>
+                            <field name="sqr_ft"/>
+                            <field name="other"/>
+                            <field name="service_time"/>
+                            <field name="replacement_cost"/>
+                            <field name="additional_notes" placeholder="Additional notes..."/>
+                        </group>
+                        <group>
+                            <field name="no_total_plants"/>
+                            <field name="no_large_plans"/>
+                            <field name="no_medium_plants"/>
+                            <field name="no_small_plant"/>
+                            <field name="no_tabletops"/>
+                            <field name="no_changes"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
