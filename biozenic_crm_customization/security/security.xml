@@ -73,9 +73,9 @@
 
 
     <!-- Activity On Every 20th Of Month -->
-    <record id="group_activity_on_20th_month" model="res.groups.privilege">
+    <record id="group_activity_on_20th_month" model="res.groups">
         <field name="name">Activity On Every 20th Of Month</field>
-        <field name="sequence">4</field>
+        <field name="sequence">1</field>
     </record>
 
 </odoo>

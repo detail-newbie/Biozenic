@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 class CRMLead(models.Model):
     _inherit = 'crm.lead'
 
-    secondary_contact = fields.Char(string="Secondary Contact", required=False)
+    secondary_contact_id = fields.Many2one('res.partner', string='Secondary Contact')
     job_site = fields.Char(string="Job Site", required=False)
     add_on_notes = fields.Text(string="Add-on Notes", required=False)
 

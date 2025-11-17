@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
 
             <xpath expr="//label[@for='email_from']" position="before">
-                <field name="secondary_contact"/>
+                <field name="secondary_contact_id"/>
             </xpath>
             <xpath expr="//field[@name='lost_reason_id']" position="before">
                 <field name="job_site"/>
