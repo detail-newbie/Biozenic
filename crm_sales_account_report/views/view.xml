@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_crm_sales_account_report_tree" model="ir.ui.view">
+        <field name="name">crm.sales.account.report.list</field>
+        <field name="model">crm.sales.account.report</field>
+        <field name="arch" type="xml">
+            <list string="Consolidated Report" create="false" edit="false" delete="false"
+                  decoration-info="invoice_amount == 0" decoration-success="invoice_amount > 0">
+                <field name="tag_id"/>
+                <field name="opportunity_name"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="quote_amount" widget="monetary"/>
+                <field name="so_amount" widget="monetary"/>
+                <field name="invoice_amount" widget="monetary"/>
+                <field name="stage_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <button name="action_open_opportunity" type="object" string="Open Opportunity"
+                        icon="fa-external-link" class="oe_highlight"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_crm_sales_account_report_search" model="ir.ui.view">
+        <field name="name">crm.sales.account.report.search</field>
+        <field name="model">crm.sales.account.report</field>
+        <field name="arch" type="xml">
+
+            <search string="Consolidated Report">
+                <field name="opportunity_name" string="Opportunity"
+                       filter_domain="[('opportunity_name', 'ilike', self)]"/>
+                <field name="tag_id" string="Tag"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="user_id" string="Salesperson"/>
+                <field name="stage_id" string="Stage"/>
+
+                <separator/>
+                <filter string="Need to Invoice" name="need_to_invoice"
+                        domain="[('stage_id.name', '=', 'Need to Invoice')]"/>
+                <filter string="Awaiting Payment" name="awaiting_payment"
+                        domain="[('stage_id.name', '=', 'Awaiting Payment')]"/>
+
+                <separator/>
+                <filter string="Has Invoices" name="has_invoices" domain="[('invoice_amount', '>', 0)]"/>
+                <filter string="No Invoices" name="no_invoices" domain="[('invoice_amount', '=', 0)]"/>
+
+                <separator/>
+                <filter string="My Opportunities" name="my_opportunities" domain="[('user_id', '=', uid)]"/>
+
+                <group colspan="16">
+                    <filter string="Tag" name="group_tag" context="{'group_by': 'tag_id'}"/>
+                    <filter string="Stage" name="group_stage" context="{'group_by': 'stage_id'}"/>
+                    <filter string="Salesperson" name="group_salesperson" context="{'group_by': 'user_id'}"/>
+                    <filter string="Customer" name="group_customer" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Company" name="group_company" context="{'group_by': 'company_id'}"
+                            groups="base.group_multi_company"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="view_crm_sales_account_report_pivot" model="ir.ui.view">
+        <field name="name">crm.sales.account.report.pivot</field>
+        <field name="model">crm.sales.account.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Consolidated Analysis">
+                <field name="tag_id" type="row"/>
+                <field name="stage_id" type="col"/>
+                <field name="quote_amount" type="measure"/>
+                <field name="so_amount" type="measure"/>
+                <field name="invoice_amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_crm_sales_account_report_graph" model="ir.ui.view">
+        <field name="name">crm.sales.account.report.graph</field>
+        <field name="model">crm.sales.account.report</field>
+        <field name="arch" type="xml">
+            <graph string="Consolidated Analysis" type="bar">
+                <field name="tag_id"/>
+                <field name="quote_amount" type="measure"/>
+                <field name="so_amount" type="measure"/>
+                <field name="invoice_amount" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_crm_sales_account_report" model="ir.actions.act_window">
+        <field name="name">Consolidated Report</field>
+        <field name="res_model">crm.sales.account.report</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="search_view_id" ref="view_crm_sales_account_report_search"/>
+        <field name="context">{'search_default_group_tag': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No data found!
+            </p>
+            <p>
+                This report shows opportunities that need to be invoiced or are awaiting payment,
+                along with their quotation, sales order, and invoice amounts.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_crm_sales_account_report" name="Consolidated Report"
+              parent="crm.crm_menu_report" action="action_crm_sales_account_report" sequence="10"/>
+
+
+    <record id='view_consolidate_config_list' model='ir.ui.view'>
+        <field name="name">consolidate.config.list</field>
+        <field name="model">consolidate.config</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="subject_email"/>
+                <field name="from_email"/>
+                <field name="to_email"/>
+                <field name="cc_email"/>
+                <field name="body_email"/>
+            </list>
+        </field>
+    </record>
+
+    <record id='view_consolidate_config_form' model='ir.ui.view'>
+        <field name="name">consolidate.config.form</field>
+        <field name="model">consolidate.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <div class="oe_title" colspan="4">
+                        <label for="subject_email"/>
+                        <h1>
+                            <field name="subject_email" placeholder="e.g. Consolidate Report" required="0"
+                                   colspan="4" nolabel="1"/>
+                        </h1>
+                    </div>
+
+                    <br/>
+                    <br/>
+
+                    <group>
+                        <group>
+                            <field name="from_email"/>
+                            <field name="to_email"/>
+                            <field name="cc_email"/>
+                        </group>
+                        <group>
+                            <field name="body_email"/>
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id='consolidate_config_action' model='ir.actions.act_window'>
+        <field name="name">Email Configuration</field>
+        <field name="res_model">consolidate.config</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem id="menu_consolidate_config_email" name="Consolidate Email Configuration"
+              action="consolidate_config_action" parent="crm.crm_menu_config" sequence="100"/>
+
+</odoo>
