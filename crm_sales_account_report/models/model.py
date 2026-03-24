@@ -7,7 +7,7 @@ from datetime import datetime
 import xlsxwriter
 
 from odoo import models, fields, api, _
-from odoo.odoo.exceptions import UserError
+from odoo.exceptions import UserError
 
 
 class CrmSalesAccountReport(models.Model):
